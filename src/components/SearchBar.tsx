@@ -2,8 +2,13 @@ import { useState } from "react";
 
 const SearchBar = () => {
 
+    interface BookListInterface {
+        //SVAR FRÅN API ()DET BLIR SÅ LåNGT? 
+    }
+
     //states 
     const [searchData, setSearchData] = useState<string>();
+    const [bookList, setBookList] = useState<BookListInterface | null>(); 
 
     const getSearchedBooks = async (event: any) => {
         //ska hämta böcker baserat på sökresultat
@@ -14,7 +19,7 @@ const SearchBar = () => {
 
             const data = await response.json(); 
 
-            const bookList = data 
+            setBookList(data); 
 
             console.log(bookList); 
 
@@ -34,6 +39,7 @@ const SearchBar = () => {
         />
         <input type="submit" value={"Sök"} />
       </form>
+      
     </>
   )
 }
