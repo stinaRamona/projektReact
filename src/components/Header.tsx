@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"; 
 import Wave from "../assets/wave.svg"; 
-import "../css/Header.css"; 
+import "../css/Header.css";
 
 const Header = () => {
   return (
