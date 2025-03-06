@@ -31,7 +31,9 @@ const RegisterUserForm = () => {
                 setError("Något gick fel vid registeringen. Försök igen senare"); 
             } 
 
-            console.log("Användare skapad"); 
+            console.log("Användare skapad");
+            //rensar formulär efter input
+            setUserData({user_name:"", email: "", password:""}) 
 
         } catch(error) { 
             console.log(error)
