@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom"
 
 const LoginForm = () => {
   return (
@@ -12,8 +12,8 @@ const LoginForm = () => {
 
         <input type="submit" value="Logga in"/><br />
     </form>
-
-    <a href="#">Inte medlem? Skaffa konto här!</a>
+    
+    <NavLink to="/register">Inte medlem? Skaffa konto här!</NavLink>
     </>
   )
 }
