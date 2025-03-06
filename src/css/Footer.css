@@ -1,0 +1,15 @@
+footer {
+    background-color: #084887; 
+    padding: 0.5%; 
+    color: #fffdf7; 
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-around;
+}
+
+.footer_info {
+    box-sizing: border-box;
+    max-width: 33%;
+    padding: 1em;
+}
