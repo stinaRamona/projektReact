@@ -1,0 +1,30 @@
+form {
+    width: 100%; 
+}
+
+input[type=text] {
+    padding: 1.5em; 
+    border: solid 1px #606C38; 
+    border-radius: 50px;
+    width: 85%; 
+}
+
+input[type=submit] {
+    background-color: #606C38;
+    color: #FFFDF7; 
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px;
+    margin-left: 1em; 
+    border: none; 
+    font-size: 1em; 
+}
+
+input[type=submit]:hover {
+    background-color: #47502a;
+    cursor: pointer; 
+}
+
+h1 {
+    text-align: center;
+}

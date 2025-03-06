@@ -8,7 +8,7 @@ const Header = () => {
     <>
     <header>
         <div id="logoWrapper">
-            <img src={LogoWhite} alt="PageTurn logga" />
+            <NavLink to="/"><img src={LogoWhite} alt="PageTurn logga" /></NavLink>
         </div>
         <ul>
             <li><NavLink className="nav-link" to="/">Start</NavLink></li>

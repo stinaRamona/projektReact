@@ -1,0 +1,12 @@
+
+#infoDiv {
+    background-color: #FB5012;
+    color: #fffdf7; 
+    padding: 2em; 
+    border-radius: 50px;
+}
+
+#infoDiv h3 {
+    text-align: center;
+}
+

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../css/SearchBar.css"; 
 
 const SearchBar = () => {
 
@@ -29,8 +30,8 @@ const SearchBar = () => {
 
   return (
     <>
+      <h1>Sök på boktitel, författare eller tema:</h1>
       <form onSubmit={getSearchedBooks}>
-        <label htmlFor="searchValue">Sök efter titel, författare eller tema:</label>
         <br />
         <input type="text" name="searchValue" id="searchValue" value={searchData}
         onChange={(event) => setSearchData(event.target.value)} //värdet från baren.  

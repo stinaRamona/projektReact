@@ -1,7 +1,20 @@
 body {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
-  font-weight: bold;
   margin: 0; 
   background-color: #fffdf7;
+}
+
+main {
+  width: 100%; 
+  max-width: 850px;
+  margin: 0 auto;  
+}
+
+h3 {
+  font-size: 1.5em
+}
+
+p {
+  font-size: 1.25em; 
 }

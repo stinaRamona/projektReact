@@ -1,10 +1,14 @@
 import SearchBar from "../components/SearchBar"
+import InfoDiv from "../components/InfoDiv"
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Startsidan för PageTurn</h1>
       <SearchBar /> 
+
+      <h2>SÖKRESULTST/PREVIEW</h2>
+
+      <InfoDiv /> 
     </div>
   )
 }
