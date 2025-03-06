@@ -9,18 +9,18 @@ header {
 
 header ul {
     list-style: none;
+    margin-right: 7em;
 }
 
 header li {
-    display: inline;
-    padding: 1em;  
+    display: inline; 
 } 
 
 .nav-link {
     text-decoration: none;
     color: #fffdf7; 
     font-size: 1.5em;
-    margin-right: 1.5em; 
+    margin-right: 2em; 
 }
 
 img {
@@ -28,7 +28,10 @@ img {
     z-index: -1; 
 }
 
-#logo {
-    padding-left: 6em;
-    color:#fffdf7;  
+#logoWrapper {
+    width: 100%;
+    max-width:200px; 
+    height: auto;
+    padding:1%;  
+    margin-left: 11em; 
 }
