@@ -31,7 +31,7 @@ const SearchBar = () => {
   return (
     <>
       <h1>Sök på boktitel, författare eller tema:</h1>
-      <form onSubmit={getSearchedBooks}>
+      <form id="searchBar" onSubmit={getSearchedBooks}>
         <br />
         <input type="text" name="searchValue" id="searchValue" value={searchData}
         onChange={(event) => setSearchData(event.target.value)} //värdet från baren.  
