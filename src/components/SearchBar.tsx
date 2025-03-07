@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/SearchBar.css"; 
 
 const SearchBar = () => {
+    //interface 
+    interface searchResult {
+      image: string, 
+      title: string, 
+      author: string, 
+      description: string
+    }
 
     //states 
     const [searchData, setSearchData] = useState<string>(); 
+    const [bookList, setBookList] = useState<searchResult[]>([]); //testar om det funkar. 
 
     const getSearchedBooks = async (event: any) => {
         //ska hämta böcker baserat på sökresultat
@@ -16,10 +24,20 @@ const SearchBar = () => {
 
             const data = await response.json(); 
 
-            let booklist = data; 
+            //array av svaret from api 
+            const books = data.items.map((item: any) => ({
+              image: item.volumeInfo.imageLinks.smallThumbnail, 
+              title: item.volumeInfo.title, 
+              author: item.volumeInfo.authors.join(", "), //sätter ihop om flera 
+              description: item.volumeInfo.description
+            }));
 
-            console.log(booklist.items[0].volumeInfo); //Får ut information om volymen 
+            setBookList(books); 
+
+            /*
+            console.log(bookList.items[0].volumeInfo); //Får ut information om volymen 
             console.log("Bok-ID:" + booklist.items[0].id); //Får ut bokid på boken 
+            */
 
         } catch(error) {
 
@@ -38,7 +56,19 @@ const SearchBar = () => {
         />
         <input type="submit" value={"Sök"} />
       </form>
-      
+
+      <div id="searchResultDiv">
+        {
+          bookList.map((book, index) => (
+            <div className="bookItem" key={index}>
+              <img src={book.image} alt={book.title} />
+              <h3>{book.title}</h3>
+              <p>{book.author}</p>
+              <article>{book.description}</article>
+            </div>
+          ))
+        }
+      </div>
     </>
   )
 }
