@@ -6,8 +6,6 @@ const HomePage = () => {
     <div>
       <SearchBar /> 
 
-      <h2>SÖKRESULTST/PREVIEW</h2>
-
       <InfoDiv /> 
     </div>
   )

@@ -26,18 +26,13 @@ const SearchBar = () => {
 
             //array av svaret from api 
             const books = data.items.map((item: any) => ({
-              image: item.volumeInfo.imageLinks.smallThumbnail, 
+              image: item.volumeInfo.imageLinks?.smallThumbnail, //lägg till placeholder ifall bild inte finns 
               title: item.volumeInfo.title, 
-              author: item.volumeInfo.authors.join(", "), //sätter ihop om flera 
+              author: item.volumeInfo.authors?.join(", "), //sätter ihop om flera 
               description: item.volumeInfo.description
             }));
 
             setBookList(books); 
-
-            /*
-            console.log(bookList.items[0].volumeInfo); //Får ut information om volymen 
-            console.log("Bok-ID:" + booklist.items[0].id); //Får ut bokid på boken 
-            */
 
         } catch(error) {
 
@@ -57,6 +52,7 @@ const SearchBar = () => {
         <input type="submit" value={"Sök"} />
       </form>
 
+      { searchData && <p>Visar resultat för {searchData}</p>}
       <div id="searchResultDiv">
         {
           bookList.map((book, index) => (
@@ -64,7 +60,7 @@ const SearchBar = () => {
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
               <p>{book.author}</p>
-              <article>{book.description}</article>
+              
             </div>
           ))
         }
