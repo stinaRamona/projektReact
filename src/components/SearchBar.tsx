@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../css/SearchBar.css"; 
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
     //interface 
     interface searchResult {
+      id: string, 
       image: string, 
       title: string, 
       author: string, 
@@ -13,6 +15,9 @@ const SearchBar = () => {
     //states 
     const [searchData, setSearchData] = useState<string>(); 
     const [bookList, setBookList] = useState<searchResult[]>([]); //testar om det funkar. 
+    const [isVisible, setIsVisible] = useState(false); 
+
+    const navigate = useNavigate(); 
 
     const getSearchedBooks = async (event: any) => {
         //ska hämta böcker baserat på sökresultat
@@ -26,6 +31,7 @@ const SearchBar = () => {
 
             //array av svaret from api 
             const books = data.items.map((item: any) => ({
+              id: item.id,
               image: item.volumeInfo.imageLinks?.smallThumbnail, //lägg till placeholder ifall bild inte finns 
               title: item.volumeInfo.title, 
               author: item.volumeInfo.authors?.join(", "), //sätter ihop om flera 
@@ -40,6 +46,11 @@ const SearchBar = () => {
         }
 
     }
+
+    //för att komma till bokinfo om en bok. 
+    const goToSinglePage = async (id: string) => {
+      navigate("/book/" + id); 
+    }; 
 
   return (
     <>
@@ -60,7 +71,10 @@ const SearchBar = () => {
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
               <p>{book.author}</p>
-              
+              {isVisible && <article>{book.description}</article>}
+              <button onClick={() => setIsVisible(!isVisible)}>
+                Beskrivning</button> {/*Visar och döljer allas. Måste fixa. */}
+              <button onClick={() => goToSinglePage(book.id)}>Gå till bok</button>
             </div>
           ))
         }

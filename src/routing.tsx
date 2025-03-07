@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage"; 
 import BaseLayout from "./components/BaseLayout";
+import SinglePage from "./pages/SinglePage";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/userpage", 
                 element: <UserPage /> 
+            }, 
+            {
+                path: "/book/:id", 
+                element: < SinglePage />
             }
         ]
     }, 
