@@ -15,8 +15,7 @@ const SearchBar = () => {
     //states 
     const [searchData, setSearchData] = useState<string>(); 
     const [bookList, setBookList] = useState<searchResult[]>([]); //testar om det funkar. 
-    const [isVisible, setIsVisible] = useState(false); 
-
+    //const [isVisible, setIsVisible] = useState(false); | FÖR DESCRIPTION kanske ska använda
     const navigate = useNavigate(); 
 
     const getSearchedBooks = async (event: any) => {
@@ -71,9 +70,7 @@ const SearchBar = () => {
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
               <p>{book.author}</p>
-              {isVisible && <article>{book.description}</article>}
-              <button onClick={() => setIsVisible(!isVisible)}>
-                Beskrivning</button> {/*Visar och döljer allas. Måste fixa. */}
+              {/*KANSKE beskrivning här, kanske inte. Inte bestämt, föredrar looken utan */}
               <button onClick={() => goToSinglePage(book.id)}>Gå till bok</button>
             </div>
           ))
