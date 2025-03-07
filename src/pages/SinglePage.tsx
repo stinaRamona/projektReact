@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useParams } from "react-router-dom";
-
+import "../css/SinglePage.css"; 
 
 const SinglePage = () => {
     
@@ -20,19 +20,17 @@ const SinglePage = () => {
     const getBook = async () => {
 
         try {
-            const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=" + id); 
+            const response = await fetch("https://www.googleapis.com/books/v1/volumes/" + id); 
 
             if(response.ok) {
                 let data = await response.json(); 
                 
-                console.log("Bokdata: " + data.items.volumeInfo); //visar bokdata nu undefined
-                
                 const singleBook = {
-                    id: data.items.id,
-                    image: data.items.volumeInfo.imageLinks.smallThumbnail, //lägg till placeholder ifall bild inte finns 
-                    title: data.items.volumeInfo.title, 
-                    author: data.items.volumeInfo.authors?.join(", "), //sätter ihop om flera 
-                    description: data.items.volumeInfo.description
+                    id: data.id,
+                    image: data.volumeInfo.imageLinks.smallThumbnail,
+                    title: data.volumeInfo.title, 
+                    author: data.volumeInfo.authors?.join(", "), //sätter ihop om flera 
+                    description: data.volumeInfo.description.replace(/<\/?[^>]+>/gi, '')
                 }
 
                 setBookInfo(singleBook); 
