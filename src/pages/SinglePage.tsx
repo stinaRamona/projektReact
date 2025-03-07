@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../css/SinglePage.css"; 
 
 const SinglePage = () => {
@@ -27,7 +28,7 @@ const SinglePage = () => {
                 
                 const singleBook = {
                     id: data.id,
-                    image: data.volumeInfo.imageLinks.smallThumbnail,
+                    image: data.volumeInfo.imageLinks.thumbnail,
                     title: data.volumeInfo.title, 
                     author: data.volumeInfo.authors?.join(", "), //sätter ihop om flera 
                     description: data.volumeInfo.description.replace(/<\/?[^>]+>/gi, '')
@@ -52,6 +53,7 @@ const SinglePage = () => {
     }, [id]);
 
     return (
+    <>
     <div id="singleBook">
         <span>{error && error}</span>
         <img src={bookInfo?.image} alt={bookInfo?.title}/>
@@ -59,6 +61,14 @@ const SinglePage = () => {
         <p>{bookInfo?.author}</p>
         <p>{bookInfo?.description}</p>
     </div>
+    <h3>Omdömen:</h3>
+    <div id="bookReviewsDiv">
+        {/*Här ska det vara omdömen på boken  */}
+        <p>Här ska omdömmena på boken finnas</p>
+    </div>
+    <p> <NavLink className="inTextLink" to="/login">Logga in</NavLink> för att skriva en recension på boken. Har du inget konto? <NavLink className="inTextLink" to="/register">Registrera dig!</NavLink></p>
+    </>
+
   )
 }
 

@@ -39,3 +39,20 @@ h1 {
 .bookItem {
     padding: 1em;
 }
+
+.bookItem button {
+    background-color: #606C38;
+    color: #FFFDF7; 
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px; 
+    border: none; 
+    font-size: 1em;
+    max-width: 200px; 
+    width: 100%; 
+}
+
+.bookItem button:hover {
+    background-color: #47502a;
+    cursor: pointer; 
+}

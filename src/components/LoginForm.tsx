@@ -14,7 +14,7 @@ const LoginForm = () => {
         <input type="submit" value="Logga in"/><br /><br />
     </form>
     <br />
-    <NavLink to="/register">Inte medlem? Skaffa konto här!</NavLink>
+    <p><NavLink className="inTextLink" to="/register">Inte medlem? Skaffa konto här!</NavLink></p>
     </>
   )
 }

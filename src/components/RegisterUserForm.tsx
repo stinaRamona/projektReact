@@ -1,6 +1,7 @@
 import InfoDiv from "./InfoDiv"
 import "../css/UserForm.css"; 
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const RegisterUserForm = () => {
     //interface för ny användare
@@ -32,6 +33,10 @@ const RegisterUserForm = () => {
             } 
 
             console.log("Användare skapad");
+
+            //skriver ut att användaren är skapad
+            setError("Användare skapad! Du kan nu logga in"); 
+
             //rensar formulär efter input
             setUserData({user_name:"", email: "", password:""}) 
 
@@ -61,7 +66,7 @@ const RegisterUserForm = () => {
 
             <input id="registerBtn" type="submit" value="Skapa användare"/><br />
         </form>
-        <span>{error && error}</span>
+        <p>{error && error}</p>
         <br />
         <InfoDiv />
         </>
