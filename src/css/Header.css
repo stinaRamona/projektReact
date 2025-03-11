@@ -35,3 +35,19 @@ img {
     padding:1%;  
     margin-left: 11em; 
 }
+
+#logOutBtn {
+    background-color: #606C38;
+    color: #FFFDF7; 
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px;
+    margin-left: 1em; 
+    border: none; 
+    font-size: 1.25em;
+}
+
+#logOutBtn:hover {
+    background-color: #47502a;
+    cursor: pointer; 
+}
