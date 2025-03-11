@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../css/SinglePage.css"; 
+import { useAuth } from "../context/AuthContext";
 
 const SinglePage = () => {
     
@@ -17,6 +18,8 @@ const SinglePage = () => {
     const {id} = useParams<{id: string}>(); 
     const [bookInfo, setBookInfo] = useState<Book>(); 
     const [error, setError] = useState<string>(); 
+
+    const {user} = useAuth();
     
     const getBook = async () => {
 
@@ -48,6 +51,10 @@ const SinglePage = () => {
 
     }
 
+    const writeReview = async (id: any) => {
+        //Tar emot id så att man kan koppla till omdömmet på boken
+    }
+
     useEffect(() => {
         getBook();
     }, [id]);
@@ -66,7 +73,9 @@ const SinglePage = () => {
         {/*Här ska det vara omdömen på boken  */}
         <p>Här ska omdömmena på boken finnas</p>
     </div>
-    <p> <NavLink className="inTextLink" to="/login">Logga in</NavLink> för att skriva en recension på boken. Har du inget konto? <NavLink className="inTextLink" to="/register">Registrera dig!</NavLink></p>
+    {!user ? <p><NavLink className="inTextLink" to="/login">Logga in</NavLink> för att skriva en recension på boken. Har du inget konto? <NavLink className="inTextLink" to="/register">Registrera dig!</NavLink></p> : 
+    <button onClick={() => writeReview(bookInfo?.id)}>Lämna ett omdömme</button>}
+    
     </>
 
   )
