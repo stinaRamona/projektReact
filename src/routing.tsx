@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage"; 
 import BaseLayout from "./components/BaseLayout";
 import SinglePage from "./pages/SinglePage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
         
             {
                 path: "/userpage", 
-                element: <UserPage /> 
+                element: (
+                    <ProtectedRoute>
+                        <UserPage />
+                    </ProtectedRoute>
+                )
             }, 
             {
                 path: "/book/:id", 

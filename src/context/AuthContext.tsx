@@ -15,6 +15,11 @@ export const AuthProvider: React.FC<AuthProviderProps>  = ({children}) => {
     const [user, setUser] = useState<User | null>(null); 
 
     const login = async (credentials: LoginCred) => {
+        
+        if(credentials.email == "" || credentials.password == "") {
+            console.log("Måste ange användarnamn och lösen"); 
+            return; 
+        }
 
         try {
             const response = await fetch("http://localhost:3000/login", {
