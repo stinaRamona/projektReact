@@ -1,27 +1,77 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react"; 
+import { useAuth } from "../context/AuthContext";
 
 const UserPage = () => {
   
   interface ReviewForm {
-
-    bookId: string, //ska vara från googlebooks 
-    userId: string, //ska vara från användaren (redan fixat genom api)
+    _id: string
+    bookId: string, 
+    userId: string, 
     rating: number, 
     review: string
 
   }; 
 
-  const [reviewData, setReviewData] = useState<ReviewForm>({bookId : "", userId: "", rating: 1, review: ""})
+  //states
+  const [reviewData, setReviewData] = useState<ReviewForm[]>([{_id: "", bookId : "", userId: "", rating: 1, review: ""}])
+  
+  //användardata
+  const {user} = useAuth(); 
+
+  const getUserReviews = async () => {
+
+    try {
+      const response = await fetch("http://localhost:3000/review/user/" + user?._id); 
+
+      const data = await response.json(); 
+
+      setReviewData(data); 
+
+    } catch(error) {
+      console.log(error); 
+    }
+  }
+
+  const deleteReview = async (id: string) => {
+
+    try {
+      const response = await fetch("http://localhost:3000/review/" + id, {
+        method: "DELETE", 
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }); 
+      if(response.ok) {
+        console.log("review borttaget!"); 
+      }
+
+
+    } catch(error) {
+      console.log(error); 
+    }
+
+    getUserReviews(); 
+
+  }
+
+  useEffect(() => {
+    getUserReviews(); 
+  }, [])
 
   return (
     <div>
       <h1>Du har kommit till adminsidan!</h1>
-      <h2>Dina lämnade omdömmen:</h2>
-      {/*Senaste ämnade omdömena här. Utmappade i en array. 
-      Sen ska man kunna ändra och ta bort samt lägga till
-      * Lägga till på en annan sida? Klicka på en knapp som sen leder en till ett formulär där man kan ge ett omdömme? 
-      På så sätt kan man få med id också - från SinglePage. 
-      */}
+      <h2>Dina lämnade recensioner:</h2>
+      {
+        reviewData.map((review, index) => (
+          <div key={index} id="reviewDiv">
+            <h3>På boken {review.bookId}</h3> {/*Vill ha namnet på boken...*/}
+            <p>{review.rating}/5</p>
+            <p>{review.review}</p>
+            <button onClick={(event) => deleteReview(review._id)}>Ta bort</button> <button>Uppdatera</button>
+          </div>
+        ))
+      }
     </div>
   )
 }
