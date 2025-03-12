@@ -65,6 +65,34 @@ const SinglePage = () => {
         event.preventDefault(); 
 
         console.log("Google books id:" + id); 
+
+        const review = {
+            bookId: id, 
+            userId: user?._id, 
+            rating: reviewData.rating, 
+            review: reviewData.review
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/review", {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(review)
+            })
+
+            if(response.ok) {
+                console.log("Review postad!"); 
+            } else {
+                console.log("Måste uppdatera någe"); 
+            }
+
+        } catch(error) {
+            console.log("Det gick inte att lägga till" + error); 
+        }
+
+        setReviewData({bookId: "", userId:"", rating: 1, review: ""})
     }
 
     useEffect(() => {
