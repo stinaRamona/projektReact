@@ -12,12 +12,20 @@ const SinglePage = () => {
         title: string, 
         author: string, 
         description: string 
-    }
+    } 
+
+    interface ReviewForm {
+        bookId: string, //ska vara från googlebooks 
+        userId: string, //ska vara från användaren (redan fixat genom api)
+        rating: number, 
+        review: string
+      }; 
 
     //states 
     const {id} = useParams<{id: string}>(); 
     const [bookInfo, setBookInfo] = useState<Book>(); 
     const [error, setError] = useState<string>(); 
+    const [reviewData, setReviewData] = useState<ReviewForm>({bookId : "", userId: "", rating: 1, review: ""})
 
     const {user} = useAuth();
     
@@ -51,8 +59,12 @@ const SinglePage = () => {
 
     }
 
-    const writeReview = async (id: any) => {
-        //Tar emot id så att man kan koppla till omdömmet på boken
+    //Lägger till ny recension på boken 
+    const submitReview = async (id: any, event:any) => {
+        
+        event.preventDefault(); 
+
+        console.log("Google books id:" + id); 
     }
 
     useEffect(() => {
@@ -70,11 +82,26 @@ const SinglePage = () => {
     </div>
     <h3>Omdömen:</h3>
     <div id="bookReviewsDiv">
-        {/*Här ska det vara omdömen på boken  */}
         <p>Här ska omdömmena på boken finnas</p>
     </div>
+    {/*Om man inte är inloggad så blir man hänvisad till att logga in om man vill recenserra boken. Annars visas ett formulär för det*/}
     {!user ? <p><NavLink className="inTextLink" to="/login">Logga in</NavLink> för att skriva en recension på boken. Har du inget konto? <NavLink className="inTextLink" to="/register">Registrera dig!</NavLink></p> : 
-    <button onClick={() => writeReview(bookInfo?.id)}>Lämna ett omdömme</button>}
+    <form>
+        <h3>Lämna en recension på boken, {user.user_name}</h3>
+        <label htmlFor="rating">Omdömme (1-5):</label><br />
+        <input type="number" id="rating" name="rating" value={reviewData.rating}
+        onChange={(event) => setReviewData({...reviewData, rating: Number(event.target.value)})}
+        /><br />
+
+        <label htmlFor="review">Din recension:</label><br />
+        <textarea name="review" id="review" value={reviewData.review}
+        onChange={(event) => setReviewData({...reviewData, review: event.target.value})}
+        ></textarea><br />
+
+        <input type="submit" value={"Lämna omdömme"} id="newRevBtn" onClick={() => submitReview(bookInfo?.id, event)}/>
+    </form>
+    
+    }
     
     </>
 

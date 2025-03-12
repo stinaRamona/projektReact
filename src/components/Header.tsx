@@ -16,6 +16,7 @@ const Header = () => {
         </div>
         <ul>
             <li><NavLink className="nav-link" to="/">Start</NavLink></li>
+            <li>{user && <NavLink className="nav-link" to="/userpage">Min sida</NavLink>}</li>
             <li>
               {!user ?  <NavLink className="nav-link" to="/login">Logga in</NavLink> : <button id="logOutBtn" onClick={logout}>Logga ut</button>}
             </li>

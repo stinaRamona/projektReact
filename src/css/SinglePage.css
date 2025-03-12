@@ -13,3 +13,18 @@
 .inTextLink:hover { 
     text-decoration: underline;
 }
+
+#newRevBtn {
+    background-color: #606C38;
+    color: #FFFDF7; 
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px;
+    border: none; 
+    font-size: 1em;
+} 
+
+#newRevBtn:hover {
+    background-color: #47502a;
+    cursor: pointer; 
+}
