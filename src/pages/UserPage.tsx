@@ -68,6 +68,35 @@ const UserPage = () => {
 
   }
 
+  const updateReview = async (id: string) => {
+    
+    const updatedReview = {
+      /*Ny data, ett formulär? Eller någon annan lösning?*/
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/review/" + id, {
+        method: "PUT", 
+        headers: {
+          "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(updatedReview)
+      }); 
+
+      if(response.ok) {
+        const data = await response.json(); 
+        console.log(data);
+      } else {
+        console.log("det gick inte att uppdatera"); 
+      }
+ 
+
+    } catch(error) {
+      console.log(error); 
+    }
+
+  }
+
   useEffect(() => {
     getUserReviews(); 
   }, [])
@@ -75,14 +104,14 @@ const UserPage = () => {
   return (
     <div>
       <h1>Du har kommit till adminsidan!</h1>
-      <h2>Dina lämnade recensioner:</h2>
+      <h2>Se och hantera dina recensioner</h2>
       {
         reviewData.map((review, index) => (
           <div key={index} id="reviewDiv">
             <h3>På boken {bookName[review.bookId]}</h3> {/*Vill ha namnet på boken...*/}
             <p>{review.rating}/5</p>
             <p>{review.review}</p>
-            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button>Uppdatera</button>
+            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button onClick={() => updateReview(review._id)}>Uppdatera</button>
           </div>
         ))
       }
