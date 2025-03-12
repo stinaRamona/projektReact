@@ -28,3 +28,19 @@
     background-color: #47502a;
     cursor: pointer; 
 }
+
+/*Formulär för recension*/
+#reviewForm input[type=number] {
+    padding: 1.5em; 
+    border: solid 1px #606C38; 
+    border-radius: 50px;
+    width: 10%; 
+
+}
+
+#reviewForm textarea {
+    padding: 1.5em; 
+    border: solid 1px #606C38; 
+    border-radius: 50px;
+    width: 95%; 
+}

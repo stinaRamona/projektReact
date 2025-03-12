@@ -114,17 +114,17 @@ const SinglePage = () => {
     </div>
     {/*Om man inte är inloggad så blir man hänvisad till att logga in om man vill recenserra boken. Annars visas ett formulär för det*/}
     {!user ? <p><NavLink className="inTextLink" to="/login">Logga in</NavLink> för att skriva en recension på boken. Har du inget konto? <NavLink className="inTextLink" to="/register">Registrera dig!</NavLink></p> : 
-    <form>
+    <form id="reviewForm">
         <h3>Lämna en recension på boken, {user.user_name}</h3>
-        <label htmlFor="rating">Omdömme (1-5):</label><br />
+        <label htmlFor="rating">Omdömme (1-5):</label><br /><br />
         <input type="number" id="rating" name="rating" value={reviewData.rating}
         onChange={(event) => setReviewData({...reviewData, rating: Number(event.target.value)})}
-        /><br />
+        /><br /><br />
 
-        <label htmlFor="review">Din recension:</label><br />
-        <textarea name="review" id="review" value={reviewData.review}
+        <label htmlFor="review">Din recension:</label><br /><br />
+        <textarea rows={10} name="review" id="review" value={reviewData.review}
         onChange={(event) => setReviewData({...reviewData, review: event.target.value})}
-        ></textarea><br />
+        ></textarea><br /><br />
 
         <input type="submit" value={"Lämna omdömme"} id="newRevBtn" onClick={() => submitReview(bookInfo?.id, event)}/>
     </form>
