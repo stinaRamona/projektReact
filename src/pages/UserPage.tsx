@@ -14,6 +14,7 @@ const UserPage = () => {
 
   //states
   const [reviewData, setReviewData] = useState<ReviewForm[]>([{_id: "", bookId : "", userId: "", rating: 1, review: ""}])
+  const [bookName, setBookName] = useState<{ [key: string]: string }>({}); 
   
   //användardata
   const {user} = useAuth(); 
@@ -24,12 +25,25 @@ const UserPage = () => {
       const response = await fetch("http://localhost:3000/review/user/" + user?._id); 
 
       const data = await response.json(); 
-
       setReviewData(data); 
+      data.forEach((review: ReviewForm) => getBookName(review.bookId));
 
     } catch(error) {
       console.log(error); 
     }
+  }
+
+  const getBookName = async (bookId: string) => {
+    
+    try {
+      const response = await fetch("https://www.googleapis.com/books/v1/volumes/" + bookId);
+
+      const data = await response.json(); 
+      setBookName(prevState => ({ ...prevState, [bookId]: data.volumeInfo.title }))
+    } catch(error) {
+      console.log(error)
+    }
+
   }
 
   const deleteReview = async (id: string) => {
@@ -65,10 +79,10 @@ const UserPage = () => {
       {
         reviewData.map((review, index) => (
           <div key={index} id="reviewDiv">
-            <h3>På boken {review.bookId}</h3> {/*Vill ha namnet på boken...*/}
+            <h3>På boken {bookName[review.bookId]}</h3> {/*Vill ha namnet på boken...*/}
             <p>{review.rating}/5</p>
             <p>{review.review}</p>
-            <button onClick={(event) => deleteReview(review._id)}>Ta bort</button> <button>Uppdatera</button>
+            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button>Uppdatera</button>
           </div>
         ))
       }
