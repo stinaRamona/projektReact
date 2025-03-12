@@ -35,7 +35,7 @@
     border: solid 1px #606C38; 
     border-radius: 50px;
     width: 10%; 
-
+    font-size: 1em;
 }
 
 #reviewForm textarea {
@@ -43,4 +43,5 @@
     border: solid 1px #606C38; 
     border-radius: 50px;
     width: 95%; 
+    font-size: 1em;
 }
