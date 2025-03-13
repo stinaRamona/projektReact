@@ -14,8 +14,11 @@ const UserPage = () => {
 
   //states
   const [reviewData, setReviewData] = useState<ReviewForm[]>([{_id: "", bookId : "", userId: "", rating: 1, review: ""}])
-  const [bookName, setBookName] = useState<{ [key: string]: string }>({}); 
-  
+  const [bookName, setBookName] = useState<{ [key: string]: string }>({});
+  const [isVisible, setIsVisible] = useState<boolean>(false); 
+  const [currentReviewId, setCurrentReviewId] = useState<string | null>(null); 
+  const [updatedReviewData, setUpdatedReviewData] = useState<ReviewForm | null>(null); 
+
   //användardata
   const {user} = useAuth(); 
 
@@ -68,14 +71,28 @@ const UserPage = () => {
 
   }
 
-  const updateReview = async (id: string) => {
+  const toggleUpdateForm = async (id: string) => {
+    setIsVisible(true); 
+    setCurrentReviewId(id); 
+    const review = reviewData.find(review => review._id === id); 
+    setUpdatedReviewData(review || null); 
+  }
+
+
+  //kommer behöva få in id hit med. 
+  const updateReview = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); 
+    if(!currentReviewId || !updatedReviewData) return; 
     
-    const updatedReview = {
-      /*Ny data, ett formulär? Eller någon annan lösning?*/
+    let updatedReview = {
+      bookId: updatedReviewData.bookId, 
+      userId: updatedReviewData.userId, 
+      rating: updatedReviewData.rating, 
+      review: updatedReviewData.review
     }
 
     try {
-      const response = await fetch("http://localhost:3000/review/" + id, {
+      const response = await fetch("http://localhost:3000/review/" + currentReviewId, {
         method: "PUT", 
         headers: {
           "Content-Type": "application/json"
@@ -86,6 +103,9 @@ const UserPage = () => {
       if(response.ok) {
         const data = await response.json(); 
         console.log(data);
+        getUserReviews(); 
+        setIsVisible(false);
+
       } else {
         console.log("det gick inte att uppdatera"); 
       }
@@ -108,13 +128,28 @@ const UserPage = () => {
       {
         reviewData.map((review, index) => (
           <div key={index} id="reviewDiv">
-            <h3>På boken {bookName[review.bookId]}</h3> {/*Vill ha namnet på boken...*/}
+            <h3>På boken {bookName[review.bookId]}</h3> 
             <p>{review.rating}/5</p>
             <p>{review.review}</p>
-            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button onClick={() => updateReview(review._id)}>Uppdatera</button>
+            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button onClick={() => toggleUpdateForm(review._id)}>Uppdatera</button>
           </div>
         ))
       }
+
+      {isVisible == true && updatedReviewData &&
+      <form onSubmit={updateReview}>
+        <label htmlFor="rating">Omdömme:</label><br />
+        <input type="number" name="rating" id="rating" value={updatedReviewData?.rating}
+        onChange={(event) => setUpdatedReviewData({ ...updatedReviewData, rating: Number(event.target.value) })}
+        /><br />
+
+        <label htmlFor="review">Recension:</label><br />
+        <textarea name="review" id="review" rows={10} value={updatedReviewData?.review}
+        onChange={(event) => setUpdatedReviewData({ ...updatedReviewData, review: event.target.value})}
+        ></textarea><br />
+
+        <input type="submit" value={"Uppdatera"} />
+      </form>}
     </div>
   )
 }
