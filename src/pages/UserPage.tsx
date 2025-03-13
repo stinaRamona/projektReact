@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useAuth } from "../context/AuthContext";
+import "../css/UserPage.css"; 
 
 const UserPage = () => {
   
@@ -123,30 +124,31 @@ const UserPage = () => {
 
   return (
     <div>
-      <h1>Du har kommit till adminsidan!</h1>
+      <h1>Välkommen tillbaka {user?.user_name}</h1>
+      <br />
       <h2>Se och hantera dina recensioner</h2>
       {
         reviewData.map((review, index) => (
-          <div key={index} id="reviewDiv">
+          <div key={index} className="reviewDiv">
             <h3>På boken {bookName[review.bookId]}</h3> 
             <p>{review.rating}/5</p>
             <p>{review.review}</p>
-            <button onClick={() => deleteReview(review._id)}>Ta bort</button> <button onClick={() => toggleUpdateForm(review._id)}>Uppdatera</button>
+            <button id="deleteBtn" onClick={() => deleteReview(review._id)}>Ta bort</button> <button id="updateBtn" onClick={() => toggleUpdateForm(review._id)}>Uppdatera</button>
           </div>
         ))
       }
 
       {isVisible == true && updatedReviewData &&
-      <form onSubmit={updateReview}>
-        <label htmlFor="rating">Omdömme:</label><br />
+      <form id="updateForm" onSubmit={updateReview}>
+        <label htmlFor="rating">Omdömme:</label><br /><br />
         <input type="number" name="rating" id="rating" value={updatedReviewData?.rating}
         onChange={(event) => setUpdatedReviewData({ ...updatedReviewData, rating: Number(event.target.value) })}
-        /><br />
+        /><br /><br />
 
-        <label htmlFor="review">Recension:</label><br />
+        <label htmlFor="review">Recension:</label><br /><br />
         <textarea name="review" id="review" rows={10} value={updatedReviewData?.review}
         onChange={(event) => setUpdatedReviewData({ ...updatedReviewData, review: event.target.value})}
-        ></textarea><br />
+        ></textarea><br /><br />
 
         <input type="submit" value={"Uppdatera"} />
       </form>}

@@ -1,0 +1,53 @@
+#deleteBtn {
+    background-color: #FB5012;
+    color: #fffdf7;
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px;
+    border: none; 
+    font-size: 1em;
+}
+
+#deleteBtn:hover {
+    background-color: #be3e0f;
+    cursor: pointer; 
+}
+
+#updateBtn {
+    background-color: #606C38;
+    color: #FFFDF7; 
+    padding: 1em; 
+    font-family: "Open Sans", sans-serif;
+    border-radius: 50px;
+    border: none; 
+    font-size: 1em;
+    margin-left: 10px; 
+}
+
+#updateBtn:hover {
+    background-color: #47502a;
+    cursor: pointer;
+}
+
+.reviewDiv {
+    background-color: #606c382d;
+    padding: 1em; 
+    border-radius: 50px;
+    margin-bottom: 1em; 
+}
+
+#updateForm input[type=number] {
+    padding: 1.5em; 
+    border: solid 1px #606C38; 
+    border-radius: 50px;
+    width: 10%; 
+    font-size: 1em;
+}
+
+#updateForm textarea {
+    padding: 1.5em; 
+    border: solid 1px #606C38; 
+    border-radius: 50px;
+    width: 95%; 
+    font-size: 1em;
+}
