@@ -126,7 +126,7 @@ const SinglePage = () => {
     }, [id]); 
 
     return (
-    <>
+    <div id="mainDivSinglePage">
     <div id="singleBook">
         <span>{error && error}</span>
         <img src={bookInfo?.image} alt={bookInfo?.title}/>
@@ -169,7 +169,7 @@ const SinglePage = () => {
     
     }
     
-    </>
+    </div>
 
   )
 }
