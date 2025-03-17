@@ -50,4 +50,62 @@ img {
 #logOutBtn:hover {
     background-color: #47502a;
     cursor: pointer; 
+} 
+
+@media (max-width: 1490px) {
+    #logoWrapper {
+        width: 100%;
+        max-width:150px; 
+        height: auto;
+        padding:1%;  
+    }
+}
+
+@media (max-width: 1266px) {
+    #logoWrapper {
+        width: 100%;
+        max-width:110px; 
+        height: auto;
+        padding:1%;  
+    }
+}
+
+@media (max-width: 1044px) {
+    #logoWrapper {
+        width: 100%;
+        max-width:90px; 
+        height: auto;
+        padding:1%;  
+    }
+}
+
+@media (max-width: 955px) {
+    #headerWave {
+        display: none; 
+    }
+
+    .nav-link { 
+        font-weight: bold;
+    }
+
+    #logoWrapper {
+        width: 100%;
+        max-width:120px; 
+        height: auto;
+        padding:1%;  
+        align-self: center;
+        margin: 0; 
+    }
+
+    header {
+        background-color: #084887;
+        position:relative;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+
+    header ul {
+        list-style: none;
+    }
 }

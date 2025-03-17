@@ -22,7 +22,7 @@ const Header = () => {
             </li>
         </ul>
     </header>
-    <img src={Wave} alt="en våg som bakgrund för navigationen" />
+    <img src={Wave} alt="en våg som bakgrund för navigationen" id="headerWave"/>
     </>
   )
 }
