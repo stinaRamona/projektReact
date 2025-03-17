@@ -123,7 +123,7 @@ const UserPage = () => {
   }, [])
 
   return (
-    <div>
+    <div id="mainDivUserPage">
       <h1>Välkommen tillbaka {user?.user_name}</h1>
       <br />
       <h2>Se och hantera dina recensioner</h2>
