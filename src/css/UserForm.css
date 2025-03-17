@@ -22,4 +22,14 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #47502a;
     cursor: pointer; 
+} 
+
+@media (max-width: 955px) {
+    input[type=text] {
+        width: 85%;
+    }
+
+    form {
+        margin-left: 10px; 
+    }
 }
