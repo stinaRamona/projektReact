@@ -142,7 +142,7 @@ const SinglePage = () => {
             <div className="reviewDiv" key={index}>
                 <h3>{review.rating}/5</h3>
                 <p>{review.review}</p>
-                <em>Recenserad av användare {user?.user_name}</em>
+                {/*<em>Recenserad av användare {user?.user_name}</em>*/}
             </div>
         ))}
         </> 
