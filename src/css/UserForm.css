@@ -2,7 +2,7 @@ form {
     width: 100%; 
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     padding: 1.5em; 
     border: solid 1px #606C38; 
     border-radius: 50px;
@@ -29,7 +29,5 @@ input[type=submit]:hover {
         width: 85%;
     }
 
-    form {
-        margin-left: 10px; 
-    }
+
 }

@@ -79,7 +79,7 @@ const RegisterUserForm = () => {
             /><br /><br />
 
             <label htmlFor="password">Lösenord:</label><br /><br />
-            <input type="text" id="password" name="password" value={userData.password}
+            <input type="password" id="password" name="password" value={userData.password}
             onChange={(event) => setUserData({...userData, password: event.target.value})}
             /> <br /><br />
 

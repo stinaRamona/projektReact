@@ -51,7 +51,7 @@ const LoginForm = () => {
         /><br /><br />
 
         <label htmlFor="password">Lösenord</label><br /> <br />
-        <input type="text" id="password" name="password" value={loginData.password}
+        <input type="password" id="password" name="password" value={loginData.password}
         onChange={(event) => setLoginData({...loginData, password: event.target.value})}
         /><br /><br />
 
