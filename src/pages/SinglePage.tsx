@@ -23,6 +23,7 @@ const SinglePage = () => {
     }; 
 
     interface Review {
+        userId: string,
         rating: number, 
         review: string
     }
@@ -33,6 +34,7 @@ const SinglePage = () => {
     const [error, setError] = useState<string>(); 
     const [reviewData, setReviewData] = useState<ReviewForm>({_id:"", bookId : "", userId: "", rating: 1, review: ""})
     const [bookReview, setBookReview] = useState<Review[]>(); 
+    const [userNames, setUserNames] = useState<{[key: string]: string}>({}); 
 
     const {user} = useAuth();
     
@@ -66,6 +68,18 @@ const SinglePage = () => {
 
     }
 
+    const getUserName = async (userId: string) => {
+        try {
+            const response = await fetch("http://localhost:3000/user/" + userId);
+            if(response.ok) {
+                const data = await response.json(); 
+                setUserNames({...userNames, [userId]: data.user_name}); 
+            }
+        } catch (error) {
+            console.log(error); 
+        }
+    }
+
     //Hämtar omdömen om boken
     const getBookReviews = async () => {
 
@@ -73,8 +87,9 @@ const SinglePage = () => {
             const response = await fetch("http://localhost:3000/review/" + id); 
 
             if(response.ok) {
-                const data = await response.json(); 
+                const data: Review[] = await response.json(); 
                 setBookReview(data); 
+                data.forEach(review => getUserName(review.userId)); 
             }
         } catch(error) {
             console.log(error); 
@@ -142,7 +157,7 @@ const SinglePage = () => {
             <div className="reviewDiv" key={index}>
                 <h3>{review.rating}/5</h3>
                 <p>{review.review}</p>
-                {/*<em>Recenserad av användare {user?.user_name}</em>*/}
+                <em>Recenserad av användare {userNames[review.userId]}</em>
             </div>
         ))}
         </> 
