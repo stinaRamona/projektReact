@@ -13,6 +13,7 @@ const LoginForm = () => {
   //states 
   const [loginData, setLoginData] = useState<LoginForm>({email: "", password: ""}); 
   const [error, setError] = useState<string>(""); 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {login, user} = useAuth(); 
   const navigate = useNavigate(); 
@@ -32,6 +33,7 @@ const LoginForm = () => {
     }
 
     try {
+      setIsLoading(true);
       await login(loginData); 
 
       if(!user) {
@@ -46,6 +48,9 @@ const LoginForm = () => {
       setError("Det gick inte att logga in. Ange korrekt e-post och lösenord.");
       // konsoll koll för utveckling 
       console.log("login error: " + error); 
+    } finally {
+      setIsLoading(false);
+
     }
 
   }
@@ -67,6 +72,8 @@ const LoginForm = () => {
     </form>
     <br />
     {error && <p className="errorMsg">{error}</p>}
+    {isLoading && <em>Loggar in...</em>}
+    <br />
     <p><NavLink className="inTextLink" to="/register">Inte medlem? Skaffa konto här!</NavLink></p>
     </>
   )

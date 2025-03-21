@@ -15,7 +15,6 @@ const SearchBar = () => {
     //states 
     const [searchData, setSearchData] = useState<string>(); 
     const [bookList, setBookList] = useState<searchResult[]>([]); //testar om det funkar. 
-    //const [isVisible, setIsVisible] = useState(false); | FÖR DESCRIPTION kanske ska använda
     const navigate = useNavigate(); 
 
     const getSearchedBooks = async (event: any) => {
@@ -31,7 +30,7 @@ const SearchBar = () => {
             //array av svaret from api 
             const books = data.items.map((item: any) => ({
               id: item.id,
-              image: item.volumeInfo.imageLinks?.smallThumbnail, //lägg till placeholder ifall bild inte finns 
+              image: item.volumeInfo.imageLinks?.smallThumbnail,  
               title: item.volumeInfo.title, 
               author: item.volumeInfo.authors?.join(", "), //sätter ihop om flera 
               description: item.volumeInfo.description

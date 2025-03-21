@@ -13,6 +13,7 @@ const RegisterUserForm = () => {
     //state för användare och för errormeddelanden 
     const [userData, setUserData] = useState<NewUser>({user_name:"", email:"", password:""}); 
     const [error, setError] = useState<string []>([]); 
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const registerUser = async (event : any) => {
 
@@ -38,7 +39,7 @@ const RegisterUserForm = () => {
         }
 
         try { 
-
+            setIsLoading(true);
             const response = await fetch("https://projektreactapi.onrender.com/adduser", {
                 method: "POST", 
                 headers: {
@@ -61,6 +62,8 @@ const RegisterUserForm = () => {
 
         } catch(error) { 
             console.log(error)
+        } finally {
+            setIsLoading(false);
         }
 
     }
@@ -86,6 +89,7 @@ const RegisterUserForm = () => {
             <input id="registerBtn" type="submit" value="Skapa användare"/><br />
         </form>
         {error.length > 0 && error.map((err, index) => <p className="errorMsg" key={index}>{err}</p>)}
+        {isLoading && <em>Registrerar...</em>}
         <br />
         <InfoDiv />
         </>

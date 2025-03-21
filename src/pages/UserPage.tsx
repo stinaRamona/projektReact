@@ -19,6 +19,7 @@ const UserPage = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false); 
   const [currentReviewId, setCurrentReviewId] = useState<string | null>(null); 
   const [updatedReviewData, setUpdatedReviewData] = useState<ReviewForm | null>(null); 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   //användardata
   const {user} = useAuth(); 
@@ -26,6 +27,7 @@ const UserPage = () => {
   const getUserReviews = async () => {
 
     try {
+      setIsLoading(true);
       const response = await fetch("https://projektreactapi.onrender.com/review/user/" + user?._id); 
 
       const data = await response.json(); 
@@ -34,6 +36,9 @@ const UserPage = () => {
 
     } catch(error) {
       console.log(error); 
+
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -127,6 +132,7 @@ const UserPage = () => {
       <h1>Välkommen tillbaka {user?.user_name}</h1>
       <br />
       <h2>Se och hantera dina recensioner</h2>
+      {isLoading && <em>Laddar dina recensioner...</em>}
       {
         reviewData.map((review, index) => (
           <div key={index} className="reviewDiv">

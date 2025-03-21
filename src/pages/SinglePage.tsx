@@ -35,6 +35,7 @@ const SinglePage = () => {
     const [reviewData, setReviewData] = useState<ReviewForm>({_id:"", bookId : "", userId: "", rating: 1, review: ""})
     const [bookReview, setBookReview] = useState<Review[]>(); 
     const [userNames, setUserNames] = useState<{[key: string]: string}>({}); 
+    const [isLoading, setIsLoading] = useState<boolean>(true); 
 
     const {user} = useAuth();
     
@@ -82,8 +83,8 @@ const SinglePage = () => {
 
     //Hämtar omdömen om boken
     const getBookReviews = async () => {
-
         try {
+            setIsLoading(true); 
             const response = await fetch("https://projektreactapi.onrender.com/review/" + id); 
 
             if(response.ok) {
@@ -93,6 +94,8 @@ const SinglePage = () => {
             }
         } catch(error) {
             console.log(error); 
+        } finally {
+            setIsLoading(false); 
         }
 
     }
@@ -151,6 +154,7 @@ const SinglePage = () => {
     </div>
     <h3>Omdömen:</h3>
     <div id="bookReviewsDiv">
+        {isLoading && <em>Laddar recensioner...</em>}
         {!bookReview || bookReview.length ===0 ? <p>Det finns inga recensioner på denna bok</p> :
         <>
         {bookReview.map((review, index) => (
