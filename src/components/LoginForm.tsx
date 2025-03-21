@@ -26,11 +26,19 @@ const LoginForm = () => {
 
   const loginUser = async (event: any) => {
     event.preventDefault(); 
+    if(!loginData.email || !loginData.password) {
+      setError("Du måste ange e-post och lösenord för att logga in"); 
+      return; 
+    }
 
     try {
-      console.log("Försöker logga in med: ", loginData); 
       await login(loginData); 
-      console.log("Det gick att logga in, navigering till /admin"); 
+
+      if(!user) {
+        setError("Det gick inte att logga in. Ange korrekt e-post och lösenord."); 
+        return;
+      }; 
+      
       navigate("/userpage"); 
       console.log("Inloggad"); 
 
