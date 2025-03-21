@@ -38,7 +38,7 @@ const LoginForm = () => {
         setError("Det gick inte att logga in. Ange korrekt e-post och lösenord."); 
         return;
       }; 
-      
+
       navigate("/userpage"); 
       console.log("Inloggad"); 
 
@@ -66,7 +66,7 @@ const LoginForm = () => {
         <input type="submit" value="Logga in"/><br /><br />
     </form>
     <br />
-    {error && <p>{error}</p>}
+    {error && <p className="errorMsg">{error}</p>}
     <p><NavLink className="inTextLink" to="/register">Inte medlem? Skaffa konto här!</NavLink></p>
     </>
   )

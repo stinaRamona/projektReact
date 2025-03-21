@@ -85,7 +85,7 @@ const RegisterUserForm = () => {
 
             <input id="registerBtn" type="submit" value="Skapa användare"/><br />
         </form>
-        {error.length > 0 && error.map((err, index) => <p key={index}>{err}</p>)}
+        {error.length > 0 && error.map((err, index) => <p className="errorMsg" key={index}>{err}</p>)}
         <br />
         <InfoDiv />
         </>

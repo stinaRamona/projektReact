@@ -19,3 +19,8 @@ h3 {
 p {
   font-size: 1.25em; 
 }
+
+.errorMsg {
+  color: #FB5012; 
+  font-weight: bold;
+}
