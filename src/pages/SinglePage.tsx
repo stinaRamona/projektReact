@@ -151,7 +151,7 @@ const SinglePage = () => {
     </div>
     <h3>Omdömen:</h3>
     <div id="bookReviewsDiv">
-        {!bookReview ? <p>Det finns inga recensioner på denna bok</p> :
+        {!bookReview || bookReview.length ===0 ? <p>Det finns inga recensioner på denna bok</p> :
         <>
         {bookReview.map((review, index) => (
             <div className="reviewDiv" key={index}>
