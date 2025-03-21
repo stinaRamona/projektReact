@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<AuthProviderProps>  = ({children}) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch("https://projektreactapi.onrender.com/login", {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json"
@@ -66,7 +66,7 @@ export const AuthProvider: React.FC<AuthProviderProps>  = ({children}) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/protected", {
+            const response = await fetch("https://projektreactapi.onrender.com/protected", {
                 method: "GET", 
                 headers: {
                     "Content-Type": "application/json", 

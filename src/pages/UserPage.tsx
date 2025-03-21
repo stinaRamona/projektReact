@@ -26,7 +26,7 @@ const UserPage = () => {
   const getUserReviews = async () => {
 
     try {
-      const response = await fetch("http://localhost:3000/review/user/" + user?._id); 
+      const response = await fetch("https://projektreactapi.onrender.com/review/user/" + user?._id); 
 
       const data = await response.json(); 
       setReviewData(data); 
@@ -53,7 +53,7 @@ const UserPage = () => {
   const deleteReview = async (id: string) => {
 
     try {
-      const response = await fetch("http://localhost:3000/review/" + id, {
+      const response = await fetch("https://projektreactapi.onrender.com/review/" + id, {
         method: "DELETE", 
         headers: {
           "Content-Type": "application/json"
@@ -93,7 +93,7 @@ const UserPage = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/review/" + currentReviewId, {
+      const response = await fetch("https://projektreactapi.onrender.com/review/" + currentReviewId, {
         method: "PUT", 
         headers: {
           "Content-Type": "application/json"

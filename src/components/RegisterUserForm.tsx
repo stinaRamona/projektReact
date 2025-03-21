@@ -39,7 +39,7 @@ const RegisterUserForm = () => {
 
         try { 
 
-            const response = await fetch("http://localhost:3000/adduser", {
+            const response = await fetch("https://projektreactapi.onrender.com/adduser", {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json"

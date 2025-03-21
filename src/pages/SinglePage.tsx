@@ -70,7 +70,7 @@ const SinglePage = () => {
 
     const getUserName = async (userId: string) => {
         try {
-            const response = await fetch("http://localhost:3000/user/" + userId);
+            const response = await fetch("https://projektreactapi.onrender.com/user/" + userId);
             if(response.ok) {
                 const data = await response.json(); 
                 setUserNames({...userNames, [userId]: data.user_name}); 
@@ -84,7 +84,7 @@ const SinglePage = () => {
     const getBookReviews = async () => {
 
         try {
-            const response = await fetch("http://localhost:3000/review/" + id); 
+            const response = await fetch("https://projektreactapi.onrender.com/review/" + id); 
 
             if(response.ok) {
                 const data: Review[] = await response.json(); 
@@ -112,7 +112,7 @@ const SinglePage = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/review", {
+            const response = await fetch("https://projektreactapi.onrender.com/review", {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json"
